@@ -91,9 +91,11 @@ exports.registerCustomer=asyncHandler(async(req,res)=>{
     res.json({message:"customer register success"})
 })
 exports.loginCustomer=asyncHandler(async(req,res)=>{
-    const{email,password}=req.body
-    const result=await Customer.findOne({email})
+    const{userName,password}=req.body
+    const result=await Customer.findOne({$or:[{email:userName},{mobile:userName}]})
     if (!result) {
+        console.log();
+    
         return res.status(400).json({message:"invalid credential"})
     }
 
