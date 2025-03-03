@@ -107,7 +107,7 @@ exports.loginCustomer=asyncHandler(async(req,res)=>{
     // if (!isVerify) {
     //     return res.status(401).json({ message: "invalid credentials password" })
     // }
-    const token=jwt.sign({id:result._id},process.env.JWT_SECRET)
+    const token=jwt.sign({_id:result._id},process.env.JWT_SECRET)
     res.cookie("olx-customer",token,{
         maxAge:60*60*1000,
         httpOnly:true,
@@ -115,7 +115,7 @@ exports.loginCustomer=asyncHandler(async(req,res)=>{
 
     })
      res.json({message:"customer login success",result:{
-        id:result._id,
+        // id:result._id,
         name:result.name,
         email:result.email,
         password:result.password,
