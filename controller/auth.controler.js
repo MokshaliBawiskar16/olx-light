@@ -115,7 +115,7 @@ exports.loginCustomer=asyncHandler(async(req,res)=>{
 
     })
      res.json({message:"customer login success",result:{
-        // id:result._id,
+        _id:result._id,
         name:result.name,
         email:result.email,
         password:result.password,
