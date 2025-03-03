@@ -11,8 +11,8 @@ app.use(express.json())//req.body
 app.use(cookieParser())//req.cookies
 app.use(express.static("dist"))//req.cookies
 
-app.use(cors({origin:"http://localhost:5173",credentials:true}))
-// app.use(cors({origin:true,credentials:true}))
+// app.use(cors({origin:"http://localhost:5173",credentials:true}))
+app.use(cors({origin:true,credentials:true}))
 app.use("/api/auth",require("./routes/auth.routes"))
 app.use("/api/product",customerProtected,require("./routes/product.routes"))
 app.use("/api/admin",adminProtected,require("./routes/admin.routes"))
