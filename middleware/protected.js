@@ -19,6 +19,7 @@ exports.adminProtected = expressAsyncHandler(async (req, res, next) => {
 
 exports.customerProtected = expressAsyncHandler(async (req, res, next) => {
     const token = req.cookies["olx-customer"]
+    console.log("Cookies received:", req.cookies);
     if (!token) {
         console.log("problem is here");
         
