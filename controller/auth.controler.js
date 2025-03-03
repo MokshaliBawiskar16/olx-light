@@ -109,7 +109,7 @@ exports.loginCustomer=asyncHandler(async(req,res)=>{
     // }
     const token=jwt.sign({_id:result._id},process.env.JWT_SECRET)
     res.cookie("olx-customer",token,{
-        maxAge:60*60*1000,
+        maxAge:1000*60*60*24,
         httpOnly:true,
     //    secure: process.env.NODE_ENV === "production"
 

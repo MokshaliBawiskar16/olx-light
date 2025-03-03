@@ -41,7 +41,7 @@ exports.customerProtected = expressAsyncHandler(async (req, res, next) => {
 
     const token = req.cookies["olx-customer"];
     if (!token) {
-        return res.status(401).json({ message: "no cookie found", cookies: req.cookies });
+        return res.status(401).json({ message: "no cookie found"});
     }
 
     jwt.verify(token, process.env.JWT_SECRET, (err, decode) => {
