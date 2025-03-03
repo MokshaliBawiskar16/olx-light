@@ -111,7 +111,7 @@ exports.loginCustomer=asyncHandler(async(req,res)=>{
     res.cookie("olx-customer",token,{
         maxAge:60*60*1000,
         httpOnly:true,
-       secure: process.env.NODE_ENV === "production"
+    //    secure: process.env.NODE_ENV === "production"
 
     })
      res.json({message:"customer login success",result:{

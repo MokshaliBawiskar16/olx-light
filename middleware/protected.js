@@ -17,20 +17,39 @@ exports.adminProtected = expressAsyncHandler(async (req, res, next) => {
     })
  })
 
-exports.customerProtected = expressAsyncHandler(async (req, res, next) => {
-    const token = req.cookies["olx-customer"]
-    console.log("Cookies received:", req.cookies);
-    if (!token) {
-        console.log("problem is here");
+// exports.customerProtected = expressAsyncHandler(async (req, res, next) => {
+//     const token = req.cookies["olx-customer"]
+//     console.log("Cookies received:", req.cookies);
+//     if (!token) {
+//         console.log("problem is here");
         
-        return res.status(401).json({ message: "no cookie found",token })
+//         return res.status(401).json({ message: "no cookie found",token })
+//     }
+//     jwt.verify(token, process.env.JWT_SECRET, (err, decode) => {
+//         if (err) {
+//             console.log(err)
+//             return res.status(401).json({ message: "invalid token" })
+//         }
+//         req.loggeduser = decode._id
+//         next()
+//     })
+//  })
+
+exports.customerProtected = expressAsyncHandler(async (req, res, next) => {
+    console.log("Headers received:", req.headers);
+    console.log("Cookies received:", req.cookies);
+
+    const token = req.cookies["olx-customer"];
+    if (!token) {
+        return res.status(401).json({ message: "no cookie found", cookies: req.cookies });
     }
+
     jwt.verify(token, process.env.JWT_SECRET, (err, decode) => {
         if (err) {
-            console.log(err)
-            return res.status(401).json({ message: "invalid token" })
+            console.log(err);
+            return res.status(401).json({ message: "invalid token" });
         }
-        req.loggeduser = decode._id
-        next()
-    })
- })
+        req.loggeduser = decode._id;
+        next();
+    });
+});
