@@ -94,9 +94,9 @@ exports.loginCustomer=asyncHandler(async(req,res)=>{
     const{userName,password}=req.body
     const result=await Customer.findOne({$or:[{email:userName},{mobile:userName}]})
     if (!result) {
-        console.log();
+        console.log("hi");
     
-        return res.status(400).json({message:"invalid credential"})
+        return res.status(400).json({message:"invalid credential",result})
     }
 
     const compare = await bcrypt.compare(password,result.password)
