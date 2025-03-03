@@ -27,7 +27,7 @@ exports.customerProtected = expressAsyncHandler(async (req, res, next) => {
             console.log(err)
             return res.status(401).json({ message: "invalid token" })
         }
-        req.loggeduser = decode.id
+        req.loggeduser = decode._id
         next()
     })
  })
