@@ -37,7 +37,7 @@ exports.fetchCustomerOrders = async (req, res) => {
             .limit(limit)
             .populate("customer", "_id name email address")
             .populate("products", "-qty -__V")
-        res.json({ message: "order fetch success", result,total })
+        res.json({ message: "order fetch success", result })
     } catch (error) {
         console.log(error)
         res.status(400).json({ message: "unable to fetch order" })
